@@ -13,7 +13,6 @@ unstructured[pdf]
 pytesseract
 pillow
 pypdf
-python-dotenv
+
 streamlit>=1.30
 requests
-torch

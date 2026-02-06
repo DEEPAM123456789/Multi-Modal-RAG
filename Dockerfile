@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.10-slim
 
 WORKDIR /app
 
@@ -7,26 +7,36 @@ RUN apt-get update && apt-get install -y \
     poppler-utils \
     tesseract-ocr \
     libgl1 \
+    dos2unix \
     && rm -rf /var/lib/apt/lists/*
 
-
-# Copy requirements first (layer caching)
+# ---------- PIP CACHE LAYER (VERY IMPORTANT) ----------
+# Copy only requirements first so Docker can cache torch install
 COPY requirements.txt .
 
-# Install dependencies
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir \
-    --default-timeout=1000 \
-    --retries 10 \
-    -r requirements.txt
+RUN pip install --upgrade pip
 
-# Copy app code
+# Create a pip cache directory inside image (persist between builds)
+RUN pip install --no-cache-dir --upgrade wheel setuptools
+
+# Install heavy ML deps first (they rarely change)
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
+# Install remaining requirements
+RUN pip install --no-cache-dir -r requirements.txt
+# ------------------------------------------------------
+
+# Now copy project code (this changes often)
 COPY frontend ./frontend
 COPY backend ./backend
 COPY entrypoint.sh .
 
-# Make entrypoint executable
-RUN chmod +x entrypoint.sh
+# Convert line endings and make executable
+RUN dos2unix entrypoint.sh && chmod +x entrypoint.sh
+
+# Create directory for persistent storage (or ephemeral on Render)
+# and set permissions so any user can write to it
+RUN mkdir -p dbv2/chroma_db && chmod -R 777 dbv2
 
 ENV PYTHONPATH=/app
 ENV STREAMLIT_SERVER_HEADLESS=true

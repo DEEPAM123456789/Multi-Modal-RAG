@@ -20,7 +20,7 @@ def partition_document(file_path:str):
 
     elements = partition_pdf(
         filename=file_path, # Path to your PDF file
-        strategy="hi_res", # Use the most accurate (but slower) processing method of extraction
+        strategy="fast", # Use the most accurate (but slower) processing method of extraction
         infer_table_structure=True, # Keep tables as sructured HTML, notjumbled text
         extract_image_block_types=["Image"], # Grab images found in the PDF
         extract_image_block_to_payload=True # Store images as base64 data you can actually use

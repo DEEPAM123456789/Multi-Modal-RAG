@@ -4,11 +4,11 @@ import time
 import json
 import uuid
 import gc
-
+import os
 import requests
 
 # BACKEND_URL = "http://127.0.0.1:8000"
-BACKEND_URL = ""
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 
 
 # from rag_pipeline import (

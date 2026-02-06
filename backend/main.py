@@ -4,6 +4,12 @@ import tempfile
 import uuid
 import json
 from pydantic import BaseModel
+from langchain_openai import OpenAIEmbeddings
+from langchain_chroma import Chroma
+import os
+
+persist_root = "dbv2/chroma_db"
+os.makedirs(persist_root, exist_ok=True)
 
 class QueryRequest(BaseModel):
     question: str
@@ -112,10 +118,21 @@ def ingestion_status(job_id: str):
 async def query_document(req: QueryRequest):
     question = req.question
 
-    if state.db is None:
+    if not os.path.exists(persist_root):
         raise HTTPException(status_code=400, detail="No document ingested")
 
-    retriever = state.db.as_retriever(search_kwargs={"k": 3})
+    dirs = sorted(os.listdir(persist_root))
+    if not dirs:
+        raise HTTPException(status_code=400, detail="No document ingested")
+
+    latest_db = os.path.join(persist_root, dirs[-1])
+
+    db = Chroma(
+        persist_directory=latest_db,
+        embedding_function=OpenAIEmbeddings()
+    )
+
+    retriever = db.as_retriever(search_kwargs={"k": 3})
     chunks = retriever.invoke(question)
 
     answer = generate_final_answer(chunks, question)
