@@ -11,8 +11,6 @@ pinned: false
 
 [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/DeepXAi/Multimodal-RAG-app) <- Click here
 
-Once You are done with the PDF uploaded, refresh the space(or page) once in order to upload another pdf for better retrieval.
-
 Chat with any PDF like ChatGPT — grounded in **text, tables, and images** using a fully containerized AI pipeline.
 
 This project implements a **production-style Multimodal Retrieval Augmented Generation (RAG)** system with a **FastAPI backend**, **Streamlit frontend**, **Chroma vector DB**, and **Dockerized deployment**.
@@ -67,25 +65,25 @@ The LLM answers using **retrieved document chunks**, reducing hallucinations.
 
 ### 🔍 How the RAG Pipeline Works
 
-### Step 1 — Document Partitioning
+#### Step 1 — Document Partitioning
 Uses **Unstructured** to extract:
 - Paragraphs
 - Tables
 - Images
 
-### Step 2 — Chunking
+#### Step 2 — Chunking
 Chunks are grouped by semantic sections.
 
-### Step 3 — AI Summarisation
+#### Step 3 — AI Summarisation
 Each chunk is summarized to improve retrieval quality.
 
-### Step 4 — Embedding Generation
+#### Step 4 — Embedding Generation
 Chunks are embedded using **OpenAI Embeddings**.
 
-### Step 5 — Vector Storage
+#### Step 5 — Vector Storage
 Stored in **ChromaDB** for semantic search.
 
-### Step 6 — Retrieval + Generation
+#### Step 6 — Retrieval + Generation
 User query → retrieve top chunks → generate grounded answer.
 
 
@@ -145,7 +143,6 @@ Upload & Ingest PDF
 
 Check Ingestion Status
 - GET /status/{job_id}
-
 
 Ask Questions
 - POST /query
