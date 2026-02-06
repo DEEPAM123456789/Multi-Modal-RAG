@@ -1,4 +1,15 @@
+---
+title: Multimodal RAG App
+emoji: 📚
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 # 📄 Multimodal RAG Chatbot (Production-Ready)
+
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/DeepXAi/Multimodal-RAG-app)
 
 Chat with any PDF like ChatGPT — grounded in **text, tables, and images** using a fully containerized AI pipeline.
 
@@ -176,12 +187,12 @@ http://localhost:8501
 ### 🐳 Run with Docker (Recommended)
 * Pull public image
 ```bash
-docker pull deepam5708/multimodal-rag-app
+docker pull deepam5708/multimodal-rag-app:final
 ```
 
 * Run container
 ```bash
-docker run --env-file .env -p 8000:8000 -p 8501:8501 deepam5708/multimodal-rag-app
+docker run --env-file .env -p 8000:8000 -p 8501:7860 deepam5708/multimodal-rag-app:final
 ```
 
 * Open:
@@ -189,8 +200,6 @@ docker run --env-file .env -p 8000:8000 -p 8501:8501 deepam5708/multimodal-rag-a
 http://localhost:8501
 ```
 
-### Future Updates
-- Will deploy this project into cloud services like AWS EC2, Render
 
 
 
