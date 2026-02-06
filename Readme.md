@@ -1,13 +1,4 @@
----
-title: Multimodal RAG App
-emoji: 📚
-colorFrom: blue
-colorTo: indigo
-sdk: docker
-pinned: false
----
-
-# 📄 Multimodal RAG Chatbot (Production-Ready)
+# 📄 Multimodal RAG Chatbot for PDFs
 
 [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/DeepXAi/Multimodal-RAG-app) <- Click here
 
