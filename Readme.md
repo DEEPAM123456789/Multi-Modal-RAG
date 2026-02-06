@@ -9,7 +9,9 @@ pinned: false
 
 # 📄 Multimodal RAG Chatbot (Production-Ready)
 
-[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/DeepXAi/Multimodal-RAG-app)
+[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/DeepXAi/Multimodal-RAG-app) <- Click here
+
+Once You are done with the PDF uploaded, refresh the space(or page) once in order to upload another pdf for better retrieval.
 
 Chat with any PDF like ChatGPT — grounded in **text, tables, and images** using a fully containerized AI pipeline.
 
